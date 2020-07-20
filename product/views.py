@@ -1,4 +1,4 @@
 from django.shortcuts import render, HttpResponse
 
 def products(request):
-    return HttResponse('<h1>tovar</h1>')
+    return HttpResponse('<h1>tovar</h1>')
