@@ -13,6 +13,13 @@ class Product(models.Model):
         verbose_name="Категория"
     )
 
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to="game_images",
+        verbose_name="Изображение Игры"
+    )
+
     description = models.TextField(
         null=True, blank=True, verbose_name="Описание")
 
