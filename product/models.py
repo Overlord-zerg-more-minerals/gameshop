@@ -55,3 +55,5 @@ class Category(models.Model):
         verbose_name = "Категории"
         verbose_name_plural = "категории"
     
+
+
