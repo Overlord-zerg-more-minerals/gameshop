@@ -31,3 +31,21 @@ def create_product(request):
         context    
     )
     
+
+def edit_product(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect("product", id=product.id)
+    
+    context = {}
+    context["form"] = ProductForm(instance=product)
+    
+    return render(
+        request,
+        "product/form.html",
+        context    
+    )
