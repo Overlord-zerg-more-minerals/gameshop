@@ -17,7 +17,8 @@ class Product(models.Model):
         null=True,
         blank=True,
         upload_to="game_images",
-        verbose_name="Изображение Игры"
+        verbose_name="Изображение Игры",
+        default="static/no_image.png"
     )
 
     description = models.TextField(

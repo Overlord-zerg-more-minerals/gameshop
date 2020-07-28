@@ -2,4 +2,7 @@ __pycache__
 db.sqlite3
 *.pyc
 gameshop/settings.py
+media/product_images/*
+static/*
+media/
 .vscode
