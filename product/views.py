@@ -16,13 +16,16 @@ def product(request, id):
 
 
 def create_product(request):
+    context = {}
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect(products)
+            context["products"] = Product.objects.filter(availability=True)
+            context["message"] = "Товар добавлен"
+            return render(request, "product/products.html", context)
+
     
-    context = {}
     context["form"] = ProductForm()
     
     return render(
@@ -34,14 +37,18 @@ def create_product(request):
 
 def edit_product(request, id):
     product = Product.objects.get(id=id)
+    context = {}
 
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect("product", id=product.id)
+            context["products"] = Product.objects.filter(availability=True)
+            context["message"] = "Изменено"
+            return render(request, "product/products.html", context)
+
     
-    context = {}
+    
     context["form"] = ProductForm(instance=product)
     
     return render(
