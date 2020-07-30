@@ -1,11 +1,22 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from product.models import *
 from product.forms import ProductForm
 
 
 def products(request):
     context = {}
-    context["products"] = Product.objects.filter(availability=True)
+    if "query" in request.GET:
+        word = request.GET.get("query")
+        context["products"] = Product.objects.filter(
+            Q(availability=True),
+            Q(title__contains=word) |
+            Q(description__contains=word) |
+            Q(category__title__contains=word) 
+        )
+
+    else:
+        context["products"] = Product.objects.filter(availability=True)
     return render(request, "product/products.html", context)
 
 
