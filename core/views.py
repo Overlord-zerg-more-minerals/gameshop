@@ -9,7 +9,7 @@ def test(request):
 
 
 def home(request):
-    return redirect('products')
+    return render(request, "core/personaloffice.html")
 
 
 def login(request):
@@ -38,7 +38,7 @@ def registration(request):
         if form.is_valid():
             form.save()
             return redirect(home)
-            
+
     context = {}
     context["form"] = RegistrationForm()
     return render(request, "core/registration.html", context)
