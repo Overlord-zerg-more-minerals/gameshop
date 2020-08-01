@@ -5,6 +5,13 @@
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
+        {% if request.user.is_authenticated %}
+           
+        {% else %} 
         <button class="btn btn-primary" name="login">Войти</button>
+        {% endif %}
     </form>
+    <a calss="btn btn-danger" href="{% url 'logout' %}" >
+        выход
+    </a>
 {% endblock %}
