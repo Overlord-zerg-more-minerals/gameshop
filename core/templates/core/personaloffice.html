@@ -2,18 +2,20 @@
 {% load bootstrap4 %}
 
 {% block page %}
-    {% if request.user.is_authenticated %}
-        <a calss="btn btn-danger" href="{% url 'logout' %}" >
-            Выход
-        </a>
-    {% else %}
-        <div class="btn-group">
-            <a class="btn btn-info" href="{% url 'login' %}">
-                Войти
+    <div class= "col-lg-6 col-md-5"><br>
+        {% if request.user.is_authenticated %}
+            <a class="btn btn-danger" href="{% url 'logout' %}" >
+                Выход
             </a>
-            <a class="btn btn-info" href="{% url 'registration' %}" >
-                Зарегистрироваться
-            </a> 
-         </div>
-    {% endif %}
+        {% else %}
+            <div class="btn-group">
+                <a class="btn btn-info" href="{% url 'login' %}">
+                    Войти
+                </a>
+                <a class="btn btn-info" href="{% url 'registration' %}" >
+                    Зарегистрироваться
+                </a> 
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

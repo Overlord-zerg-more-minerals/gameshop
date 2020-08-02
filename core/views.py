@@ -4,24 +4,29 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from core.forms import RegistrationForm
 
+
 def test(request):
     return HttpResponse('test')
 
 
 def home(request):
+    return redirect('products')
+
+
+def personaloffice(request):
     return render(request, "core/personaloffice.html")
 
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect(home)
+        return redirect(personaloffice)
     context = {}
     if "login" in request.POST:
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            return redirect(home)
+            return redirect(personaloffice)
 
     context["form"] = AuthenticationForm()
     return render(request, "core/login.html", context)
@@ -29,7 +34,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect(home)
+    return redirect(personaloffice)
 
 
 def registration(request):
@@ -37,7 +42,7 @@ def registration(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(home)
+            return redirect(personaloffice)
 
     context = {}
     context["form"] = RegistrationForm()
