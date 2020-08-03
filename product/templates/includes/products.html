@@ -1,0 +1,11 @@
+{% for product in products %}
+    {% if product.iamge %}
+            <a href="{% url 'product' product.id %}">
+                <img src="{{ product.iamge.url }}">
+            </a>
+    {% endif %}
+        <a href="{% url 'product' product.id %}">
+            {{ product.title }}
+        </a>
+    {{ product.price|floatformat:"0" }}$
+{% endfor %}

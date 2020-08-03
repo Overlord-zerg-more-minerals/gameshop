@@ -4,6 +4,14 @@
 {% block page %}
     <div class= "col-lg-6 col-md-5"><br>
         {% if request.user.is_authenticated %}
+            <h3>инф о {{ request.user.username }}</h3>
+            <ul>
+                <li>Логин: {{ request.user.username }}</li>
+                <li>ФИО: {{ request.user.get_full_name }}</li>
+                <li>email: {{ request.user.email }}</li>
+                <li>{{ request.user. }}</li>
+            </ul>
+            
             <a class="btn btn-danger" href="{% url 'logout' %}" >
                 Выход
             </a>

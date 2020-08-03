@@ -2,6 +2,7 @@ from django.shortcuts import render,\
     HttpResponse, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from core.forms import RegistrationForm
 
 

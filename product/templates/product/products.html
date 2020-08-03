@@ -1,16 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}  
-        <h1>Все игры:</h1>
-            {% for product in products %}
-                {% if product.iamge %}
-                        <a href="{% url 'product' product.id %}">
-                            <img src="{{ product.iamge.url }}">
-                        </a>
-                {% endif %}
-                    <a href="{% url 'product' product.id %}">
-                        {{ product.title }}
-                    </a>
-                {{ product.price|floatformat:"0" }}$
-            {% endfor %}
+    {% include 'includes/products.html' %}
 {% endblock %}
