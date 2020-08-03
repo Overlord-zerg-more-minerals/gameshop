@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from core.forms import RegistrationForm
+from product.models import Product
 
 
 def test(request):
@@ -15,7 +16,9 @@ def home(request):
 
 
 def personaloffice(request):
-    return render(request, "core/personaloffice.html")
+    context = {}
+    context["products"] = Product.objects.filter(availability=True, user=request.user)
+    return render(request, "core/personaloffice.html", context)
 
 
 def login(request):
