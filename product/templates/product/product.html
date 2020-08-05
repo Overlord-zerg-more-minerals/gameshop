@@ -29,6 +29,8 @@
             >
                 Удалить
             </a>
+        {% elif product.user %}
+            <a href="{% url 'personaloffice' product.user.id %}">{{ product.user }}</a>
         {% endif %}
     </div>
 </div>

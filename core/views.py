@@ -3,6 +3,7 @@ from django.shortcuts import render,\
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from core.forms import RegistrationForm
 from product.models import Product
 
@@ -15,10 +16,11 @@ def home(request):
     return redirect('products')
 
 
-def personaloffice(request):
-    context = {}
-    context["products"] = Product.objects.filter(availability=True, user=request.user)
-    return render(request, "core/personaloffice.html", context)
+def personaloffice(request, pk):
+        context = {}
+        context["user"] = User.objects.get(id=pk)
+        context["products"] = Product.objects.filter(user=context["user"])
+        return render(request, "core/personaloffice.html", context)
 
 
 def login(request):
@@ -51,3 +53,9 @@ def registration(request):
     context = {}
     context["form"] = RegistrationForm()
     return render(request, "core/registration.html", context)
+
+
+def sellers(request):
+    sellers = User.objects.exclude(product=None)
+    context = {"sellers": sellers}
+    return render(request, "core/sellers.html", context)

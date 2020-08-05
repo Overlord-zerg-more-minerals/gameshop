@@ -3,13 +3,13 @@
 
 {% block page %}
     <div class= "col-lg-6 col-md-5"><br>
-        {% if request.user.is_authenticated %}
-            <h3>инф о {{ request.user.username }}</h3>
+        {% if user.is_authenticated %}
+            <h3>инф о {{ user.username }}</h3>
             <ul>
-                <li>Логин: {{ request.user.username }}</li>
-                <li>ФИО: {{ request.user.get_full_name }}</li>
-                <li>email: {{ request.user.email }}</li>
-                <li>{{ request.user. }}</li>
+                <li>Логин: {{ user.username }}</li>
+                <li>ФИО: {{ user.get_full_name }}</li>
+                <li>email: {{ user.email }}</li>
+                <li>{{ user. }}</li>
             </ul>
                 {% include 'includes/products.html' %}
             <a class="btn btn-danger" href="{% url 'logout' %}" >
