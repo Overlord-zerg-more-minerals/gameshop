@@ -1,8 +1,37 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 
 {% block content %}
-    {% for seller in sellers %}
-    <h3>{{ seller }}</h3>
-    {% endfor %}
+    
+        <div class="container">          
+            <table class="table table-bordered">
+               
+            <thead>
+                <tr>
+                <th>Ник</th>
+                <th>ФИО</th>
+                <th>Email</th>
+                </tr>
+            </thead>
+                
+            <tbody>
+                {% for seller in sellers %} 
+                    <tr>
+                    <td>{{ seller.username }}</td>
+                    <td>{{ seller.get_full_name }}</td>
+                    <td>{{ seller.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+        <!-- <div class="card" style="width:400px">
+            <img class="card-img-top" src="#" alt="Card image">
+            <div class="card-body">
+            <h4 class="card-title">{{ seller }}</h4>
+            <p class="card-text">{{ user.get_full_name }}</p>
+            <a href="#" class="btn btn-primary">Профиль</a>
+            </div>
+        </div> -->
+    
 {% endblock %}
