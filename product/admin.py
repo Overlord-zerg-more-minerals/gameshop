@@ -22,7 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
-    # list_editable = [field.name for field in Category._meta.get_fields()]
+    # list_editable = ["title"]
     list_display = [field.name for field in Category._meta.get_fields()[2:]]
     # list_filter = ["title"]
 
