@@ -28,9 +28,6 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'products' %}">Главная</a>
           </li>
-            {% if request.user.is_authenticated %}
-          
-            {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'personaloffice' request.user.pk %}">Личный кабинет</a>
           </li>
@@ -40,6 +37,15 @@
           <li class="nav-item">
             <a class="nav-link" href="#">SaBBaT</a> 
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Выйти</a> 
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Войти</a> 
+            </li>
+          {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{% url 'products' %}">
           {% csrf_token %}

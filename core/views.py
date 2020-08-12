@@ -17,22 +17,22 @@ def home(request):
 
 
 def personaloffice(request, pk):
-        context = {}
-        context["user"] = User.objects.get(id=pk)
-        context["products"] = Product.objects.filter(user=context["user"])
-        return render(request, "core/personaloffice.html", context)
+    context = {}
+    context["user"] = User.objects.get(id=pk)
+    context["products"] = Product.objects.filter(user=context["user"])
+    return render(request, "core/personaloffice.html", context)
 
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect(personaloffice)
+        return redirect(home)
     context = {}
     if "login" in request.POST:
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            return redirect(personaloffice)
+            return redirect(home)
 
     context["form"] = AuthenticationForm()
     return render(request, "core/login.html", context)
@@ -40,17 +40,33 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect(personaloffice)
+    return redirect(home)
 
 
 def registration(request):
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(personaloffice)
-
     context = {}
+    if request.method == "POST":
+        username = request.POST.get("login")
+        email = request.POST.get("email")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        password1 = request.POST.get("password1") 
+        password2 = request.POST.get("password2")
+        if password1 == password2:
+            User.objects.create_user(
+                username=username,
+                email=email,
+                first_name=first_name,
+                last_name=last_name,
+                password=password1
+            )
+            return redirect("login")
+        else:
+            context["username"] = username
+            context["email"] = email
+            context["first_name"] = first_name
+            context["last_name"] = last_name
+            context["massege"] = "Пароли не совпадают"
     context["form"] = RegistrationForm()
     return render(request, "core/registration.html", context)
 

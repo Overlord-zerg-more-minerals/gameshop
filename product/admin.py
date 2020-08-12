@@ -18,11 +18,9 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ["price"]
 
 
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
-    # list_editable = ["title"]
-    list_display = [field.name for field in Category._meta.get_fields()[2:]]
-    # list_filter = ["title"]
-
+    list_display = [field.name for field in Category._meta.get_fields()[1:]]
+    list_editable = [field.name for field in Category._meta.get_fields()[2:]]
+    search_fields = ["title", "product__title"]

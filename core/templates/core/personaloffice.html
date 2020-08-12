@@ -3,27 +3,12 @@
 
 {% block page %}
     <div class= "col-lg-6 col-md-5"><br>
-        {% if user.is_authenticated %}
-            <h3>инф о {{ user.username }}</h3>
-            <ul>
-                <li>Логин: {{ user.username }}</li>
-                <li>ФИО: {{ user.get_full_name }}</li>
-                <li>email: {{ user.email }}</li>
-                <li>{{ user. }}</li>
-            </ul>
-                {% include 'includes/products.html' %}
-            <a class="btn btn-danger" href="{% url 'logout' %}" >
-                Выход
-            </a>
-        {% else %}
-            <div class="btn-group">
-                <a class="btn btn-info" href="{% url 'login' %}">
-                    Войти
-                </a>
-                <a class="btn btn-info" href="{% url 'registration' %}" >
-                    Зарегистрироваться
-                </a> 
-            </div>
-        {% endif %}
+        <h3>инф о {{ user.username }}</h3>
+        <ul>
+            <li>Логин: {{ user.username }}</li>
+            <li>ФИО: {{ user.get_full_name }}</li>
+            <li>email: {{ user.email }}</li>
+        </ul>
+        {% include 'includes/products.html' %}
     </div>
 {% endblock %}

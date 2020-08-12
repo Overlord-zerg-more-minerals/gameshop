@@ -2,25 +2,27 @@
 {% load bootstrap4 %}
 
 {% block page %}
-    <div class="container">          
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Ник</th>
-                    <th>ФИО</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for seller in sellers %} 
+
+    <div class="container">
+        <br>         
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>{{ seller.username }}</td>
-                        <td>{{ seller.get_full_name }}</td>
-                        <td>{{ seller.email }}</td>
+                        <th>Ник</th>
+                        <th>ФИО</th>
+                        <th>Email</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for seller in sellers %} 
+                        <tr>
+                            <td>{{ seller.username }}</td>
+                            <td>{{ seller.get_full_name }}</td>
+                            <td>{{ seller.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
     </div>
         <!-- <div class="card" style="width:400px">
             <img class="card-img-top" src="#" alt="Card image">
