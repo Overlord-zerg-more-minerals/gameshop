@@ -29,28 +29,30 @@
             <a class="nav-link" href="{% url 'products' %}">Главная</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'personaloffice' request.user.pk %}">Личный кабинет</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'sellers' %}">Админы</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">SaBBaT</a> 
           </li>
-          {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Выйти</a> 
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Войти</a> 
-            </li>
-          {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{% url 'products' %}">
           {% csrf_token %}
            <input class="form-control mr-sm-2" type="text" title="query">
            <button class="btn btn-success my-2 my-sm-0">Поиск</button>
+           <div class="btn-group" >
+              {% if user.is_authenticated %}
+                  <a class="btn btn-info my-2 my-sm-0" href="{% url 'personaloffice' request.user.pk %}">
+                    Личный кабинет
+                  </a>
+              {% else %}
+                  <a class="btn btn-info my-2 my-sm-0" href="{% url 'login' %}">
+                    Войти
+                  </a>          
+                  <a class="btn btn-info my-2 my-sm-0" href="{% url 'registration' %}">
+                    Зарегистрироваться
+                  </a>              
+              {% endif %}
+            </div>
         </form>
     </nav>
       <div class="container">

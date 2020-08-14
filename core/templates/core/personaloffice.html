@@ -4,11 +4,24 @@
 {% block page %}
     <div class= "col-lg-6 col-md-5"><br>
         <h3>инф о {{ user.username }}</h3>
-        <ul>
-            <li>Логин: {{ user.username }}</li>
-            <li>ФИО: {{ user.get_full_name }}</li>
-            <li>email: {{ user.email }}</li>
-        </ul>
+            <ul>
+                <li>Логин: {{ user.username }}</li>
+                <li>ФИО: {{ user.get_full_name }}</li>
+                <li>email: {{ user.email }}</li>
+            </ul>
+        <hr>
+        {% if user == request.user %}
+        <h5>Изменить пароль:</h5>
+            <form action="{% url 'change-password' %}" method="POST">
+                {% csrf_token %}
+                {% bootstrap_form password_change_form %}
+                <button class="btn btn-info">Сохранить</button>
+            </form>
+        <hr>
+        {% endif %}
         {% include 'includes/products.html' %}
+            <a class="btn btn-success my-2 my-sm-0" href="{% url 'logout' %}">
+                Выйти
+            </a>
     </div>
 {% endblock %}
