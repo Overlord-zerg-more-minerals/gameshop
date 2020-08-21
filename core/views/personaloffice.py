@@ -10,3 +10,4 @@ def personaloffice(request, pk):
     context["products"] = Product.objects.filter(user=context["user"])
     context["password_change_form"] = ChangePasswordForm()
     return render(request, "core/personaloffice.html", context)
+    
