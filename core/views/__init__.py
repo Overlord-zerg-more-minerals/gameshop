@@ -4,3 +4,4 @@ from .change_password import change_password
 from .personaloffice import personaloffice
 from .registration import registration
 from .sellers import sellers
+from .edit_personaloffice import edit_personaloffice

@@ -3,13 +3,20 @@
 
 {% block page %}
     <div class= "col-lg-6 col-md-5"><br>
-        <h3>инф о {{ user.username }}</h3>
-            <ul>
-                <li>Логин: {{ user.username }}</li>
-                <li>ФИО: {{ user.get_full_name }}</li>
-                <li>email: {{ user.email }}</li>
-            </ul>
-        <hr>
+        <h3>
+            {{ user.username }}
+            <i class="fas fa-cogs" href="{% url 'edit-personaloffice' %}">
+            </i>
+            <a class="btn btn-success my-2 my-sm-0" href="{% url 'logout' %}">
+                Выйти
+            </a>
+        </h3>
+        <ul>
+            <li>Логин: {{ user.username }}</li>
+            <li>ФИО: {{ user.get_full_name }}</li>
+            <li>email: {{ user.email }}</li>
+        </ul>
+        <hr>   
         {% if user == request.user %}
         <h5>Изменить пароль:</h5>
             <form action="{% url 'change-password' %}" method="POST">
@@ -20,8 +27,5 @@
         <hr>
         {% endif %}
         {% include 'includes/products.html' %}
-            <a class="btn btn-success my-2 my-sm-0" href="{% url 'logout' %}">
-                Выйти
-            </a>
     </div>
 {% endblock %}
