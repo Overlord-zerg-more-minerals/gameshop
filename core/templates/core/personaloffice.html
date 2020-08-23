@@ -5,8 +5,9 @@
     <div class= "col-lg-6 col-md-5"><br>
         <h3>
             {{ user.username }}
-            <i class="fas fa-cogs" href="{% url 'edit-personaloffice' %}">
-            </i>
+            <!-- <i class="fas fa-cogs" href="{% url 'edit-personaloffice' %}"> -->
+                <a class="fas fa-cogs" href="{% url 'edit-personaloffice' %}"></a>
+            <!-- </i> -->
             <a class="btn btn-success my-2 my-sm-0" href="{% url 'logout' %}">
                 Выйти
             </a>
