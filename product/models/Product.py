@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 
 class Product(models.Model):
     title = models.CharField(
-        max_length=255, verbose_name="Название")
+        max_length=255,
+        verbose_name="Название"
+    )
 
     user = models.ForeignKey(
         to=User,
@@ -33,7 +35,10 @@ class Product(models.Model):
     )
 
     description = models.TextField(
-        null=True, blank=True, verbose_name="Описание")
+        null=True,
+        blank=True,
+        verbose_name="Описание"
+    )
 
     price = models.DecimalField(
         default=0,
@@ -43,10 +48,14 @@ class Product(models.Model):
     )
 
     quantity_purchases = models.IntegerField(
-        default=0, verbose_name="Кол-во продаж")
+        default=0,
+        verbose_name="Кол-во продаж"
+    )
 
     availability = models.BooleanField(
-        default=True, verbose_name="Есть в наличии")
+        default=True,
+        verbose_name="Есть в наличии"
+    )
 
     delete = models.BooleanField(
         default=False,

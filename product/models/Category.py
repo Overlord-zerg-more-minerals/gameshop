@@ -3,7 +3,9 @@ from django.db import models
 
 class Category(models.Model):
     title = models.CharField(
-        max_length=255, verbose_name="Название")
+        max_length=255,
+        verbose_name="Название"
+    )
 
     description = models.TextField(
         null=True,

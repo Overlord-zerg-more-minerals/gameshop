@@ -9,7 +9,7 @@ class RegistrationForm(UserCreationForm):
         fields = ["username", "email", "first_name", "last_name"]
 
 
-class ChangePasswordForm(SetPasswordForm):
+class PasswordChangeForm(SetPasswordForm):
     class Meta:
         model = User
         fields = ["new_password1", "new_password2"]

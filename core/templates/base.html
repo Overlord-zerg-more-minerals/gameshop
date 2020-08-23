@@ -54,24 +54,23 @@
             </a>              
           {% endif %}
     </nav>
-      <div class="container">
+      <div class="container-fluid pt-3">
         <div class="row"> 
           {% block page %}
           <div class="col-lg-3 col-md-2 ">
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
-            Панель для жанров, категории ... <br>
+            <div class="list-group">
+              {% for category in categories %}
+                <a 
+                  class="list-group-item
+                    {% if category.id == category_pk %}
+                      list-group-item-warning
+                    {% endif %}
+                  " 
+                  href="{% url 'category' category.id %}">
+                  {{ category.title }}
+                </a>
+              {% endfor %}
+            </div>
           </div>
           <div class= "col-lg-6 col-md-5"><br>
             {% block content %}
