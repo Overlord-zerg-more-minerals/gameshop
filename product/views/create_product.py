@@ -24,7 +24,7 @@ def create_product(request):
     
     return render(
         request,
-        "product/test_form.html",
+        "product/create.html",
         context    
     )
     
