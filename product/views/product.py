@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
+from django.views.generic import TemplateView
 from product.models import Product
 
 
@@ -7,6 +8,10 @@ def product(request, id):
     context = {}
     context["product"] = Product.objects.get(id=id)
     return render(request, "product/product.html", context)
+
+
+class ProductView(TemplateView):
+    template_name = "core/test.html"
 
 
 def products(request):
