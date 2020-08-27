@@ -34,6 +34,20 @@ class Feedback(models.Model):
         auto_now_add=True
     ) 
 
+    phone = models.IntegerField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name="Номер телефона"
+    )
+
+    email = models.EmailField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name="Email"
+    )
+
     class Meta:
         verbose_name = "Обратная связь"
         verbose_name_plural = "Формы обратной связи"

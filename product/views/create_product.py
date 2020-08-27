@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView, View
 from product.models import Product
 from product.forms import ProductForm
 
@@ -28,3 +29,27 @@ def create_product(request):
         context    
     )
     
+
+class ProductCreate(View):
+    def POST(self):
+        context = {}
+        if request.method == "POST":
+            form = ProductForm(request.POST, request.FILES)
+            if form.is_valid():
+                new_product = form.save()
+                new_product.user = request.user
+                new_product.save()
+                context["products"] = Product.objects.filter(
+                    availability=True,
+                    delete=False
+                )
+                context["message"] = "Товар добавлен"
+                return render(request, "product/products.html", context)
+
+        context["form"] = ProductForm()
+    
+        return render(
+            request,
+            "product/create.html",
+            context    
+        )
