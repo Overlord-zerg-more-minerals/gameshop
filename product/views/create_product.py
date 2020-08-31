@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, View
 from product.models import Product
 from product.forms import ProductForm
@@ -33,7 +34,8 @@ class ProductCreate(View):
             return render(self.request, "product/products.html", context)
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy("login")
     model = Product
     fields = [
                 "title",

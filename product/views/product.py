@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.views.generic import TemplateView, DetailView
 from product.models import Product
-
+from django.views.generic import ListView
 
 def product(request, id):
     context = {}
@@ -44,3 +44,13 @@ def products(request):
             delete=False
         )
     return render(request, "product/products.html", context)
+
+
+class ProductList(ListView):
+    model = Product
+    template_name = "product/product.html"
+    queryset = Product.objects.filter(
+        availability=True,
+        delete=False
+    )
+    
