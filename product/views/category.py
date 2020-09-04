@@ -1,11 +1,14 @@
 from django.shortcuts import render
+from django.db.models import Q
 from product.models import Product
 
 
 def category(request, pk):
     context = {}
+    category = Category.objects.get(id=pk)
     context["object_list"] = Product.objects.filter(
-        category__id=pk,
+        Q(category=category) |
+        Q(category__in=category.child_category.all()),
         availability=True,
         delete=False
     )

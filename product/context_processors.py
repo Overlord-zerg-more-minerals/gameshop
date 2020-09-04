@@ -4,6 +4,6 @@ from product.models import Category
 
 def category(request):
     context = {}
-    context["categories"] = Category.objects.order_by("title")
+    context["categories"] = Category.objects.filter(parent_category=None).order_by("title")
     # context["Feedback_form"] = FeedBackForm()
     return context
