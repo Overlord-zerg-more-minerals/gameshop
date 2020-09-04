@@ -4,7 +4,7 @@ from product.models import Product
 
 def category(request, pk):
     context = {}
-    context["products"] = Product.objects.filter(
+    context["object_list"] = Product.objects.filter(
         category__id=pk,
         availability=True,
         delete=False

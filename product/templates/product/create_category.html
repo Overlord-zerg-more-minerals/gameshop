@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+    <h3>Добавить категорию</h3>
+    <form method="POST" enctype="text/multipar/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button class="btn btn-lg btn-info" >Сохранить</button>
+    </form>
+{% endblock %}

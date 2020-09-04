@@ -4,10 +4,10 @@ from django.views.generic import TemplateView, DetailView
 from product.models import Product
 from django.views.generic import ListView
 
-def product(request, id):
-    context = {}
-    context["product"] = Product.objects.get(id=id)
-    return render(request, "product/product.html", context)
+# def product(request, id):
+#     context = {}
+#     context["product"] = Product.objects.get(id=id)
+#     return render(request, "product/product.html", context)
 
 
 class ProductView(TemplateView):

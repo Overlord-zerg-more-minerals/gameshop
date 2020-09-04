@@ -8,7 +8,7 @@
         </div>
     {% endif %}
     <div class="col-lg-8 col-md-6 col-sm-12">
-        <h3>{{ product }}</h3>
+        <h3><a href="{% url 'category' product.category.id %}"> -> {{ product.category }}</a>{{ product }}</h3>
         <h3>{{ product.price }}$</h3>
         <div>{{ product.description|linebreaks }}</div>
         {% if product.availability %}
