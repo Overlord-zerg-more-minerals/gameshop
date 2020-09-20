@@ -36,7 +36,7 @@ class ProductCreate(View):
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
-    login_url = reverse_lazy("login")
+    login_url = "/login/"
     model = Product
     fields = [
                 "title",
@@ -46,23 +46,23 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
                 "price",
             ]
 
-    form = ProductForm
+    # form = ProductForm
     template_name = "product/create.html"
     success_url = reverse_lazy("products")
 
 
-@user_passes_test(lambda user: user.is_staff)
-def create_category(request):
-    context = {}
+# @user_passes_test(lambda user: user.is_staff)
+# def create_category(request):
+#     context = {}
 
-    if request.method == "POST":
-        form = CategoryCreateForm(request.POST)
-        if form.is_valid():
-            category = form.save()
-            return redirect("category", pk=category.id)
+#     if request.method == "POST":
+#         form = CategoryCreateForm(request.POST)
+#         if form.is_valid():
+#             category = form.save()
+#             return redirect("category", pk=category.id)
 
-    context["form"] = CategoryCreateForm()
-    return render(request, "product/create_category.html", context)
+#     context["form"] = CategoryCreateForm()
+#     return render(request, "product/create_category.html", context)
 
 
 class CategoryCreate(CreateView):
