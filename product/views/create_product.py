@@ -7,7 +7,8 @@ from django.utils.decorators import method_decorator
 from product.models import Product, Category
 from product.forms import ProductForm
 
-# @login_required(login_url="/personaloffice/")
+
+@login_required(login_url="/personaloffice/")
 class ProductCreate(View):
     def get(self, *args, **kwargs):
         context = {}
@@ -49,28 +50,3 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     # form = ProductForm
     template_name = "product/create.html"
     success_url = reverse_lazy("products")
-
-
-# @user_passes_test(lambda user: user.is_staff)
-# def create_category(request):
-#     context = {}
-
-#     if request.method == "POST":
-#         form = CategoryCreateForm(request.POST)
-#         if form.is_valid():
-#             category = form.save()
-#             return redirect("category", pk=category.id)
-
-#     context["form"] = CategoryCreateForm()
-#     return render(request, "product/create_category.html", context)
-
-
-class CategoryCreate(CreateView):
-    model = Category
-    fields = ["name", "description"]
-    tamplate_name = "product/create_category.html"
-    success_url = reverse_lazy("products")
-
-    @method_decorator(user_passes_test(lambda user: user.is_staff))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
